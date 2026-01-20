@@ -239,17 +239,10 @@ const PriceComparator = () => {
   const summaryStats = getSummaryStats();
   const globalStats = getGlobalStats();
 
-  // PARTIE 1 SE TERMINE ICI
-  // VOIR PARTIE 2 POUR LE RETURN ET LE JSX
-
-// SUITE DE LA PARTIE 1
-  // Ajoutez ce code après les fonctions de la Partie 1
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
       <div className="max-w-7xl mx-auto">
         
-        {/* Header */}
         <div className="bg-white rounded-lg shadow-lg border-b-4 border-blue-600 p-6 mb-6">
           <div className="flex items-center justify-between">
             <div>
@@ -288,7 +281,6 @@ const PriceComparator = () => {
           </div>
         </div>
 
-        {/* Upload Files */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           <div className="bg-white rounded-lg shadow-md border border-gray-200 p-4 hover:shadow-lg transition-shadow">
             <label className="block cursor-pointer">
@@ -333,7 +325,6 @@ const PriceComparator = () => {
           </div>
         </div>
 
-        {/* Action Buttons */}
         <div className="flex gap-3 mb-6">
           <button
             onClick={processComparison}
@@ -366,7 +357,6 @@ const PriceComparator = () => {
 
         {results && (
           <>
-            {/* Category Tabs */}
             <div className="bg-white rounded-lg shadow-md border border-gray-200 p-4 mb-6">
               <h3 className="text-sm font-semibold text-gray-700 mb-3 uppercase tracking-wide">
                 Catégories ({Object.keys(results).length})
@@ -391,7 +381,6 @@ const PriceComparator = () => {
               </div>
             </div>
 
-            {/* Filter Buttons */}
             <div className="bg-white rounded-lg shadow-md border border-gray-200 p-4 mb-6">
               <div className="flex items-center justify-between flex-wrap gap-4">
                 <div className="flex items-center gap-2">
@@ -445,7 +434,6 @@ const PriceComparator = () => {
               </div>
             </div>
 
-            {/* Summary Stats */}
             {summaryStats && (
               <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6 mb-6">
                 <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
@@ -503,7 +491,6 @@ const PriceComparator = () => {
               </div>
             )}
 
-            {/* Price Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
               <div className="bg-white rounded-lg shadow-md border border-gray-200 p-4">
                 <p className="text-xs text-gray-600 mb-2 uppercase tracking-wide">Produits</p>
@@ -536,7 +523,6 @@ const PriceComparator = () => {
               </div>
             </div>
 
-            {/* Table */}
             <div className="bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
@@ -552,40 +538,21 @@ const PriceComparator = () => {
                       <th className="px-4 py-3 text-center font-semibold text-gray-700 uppercase tracking-wide">Liens</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-gray-200">
+                 <tbody className="divide-y divide-gray-200">
                     {currentData.map((item, idx) => (
                       <tr key={idx} className="hover:bg-blue-50 transition-colors">
                         <td className="px-4 py-3 text-gray-800 font-medium">{item.product_name}</td>
                         <td className="px-4 py-3 font-mono text-gray-600 text-xs">{item.reference}</td>
-                        <td className="px-4 py-3 text-center">
-                          <span className={`px-2 py-1 text-xs rounded-full font-semibold ${
-                            item.difference_type === 'both' ? 'bg-purple-100 text-purple-700' :
-                            item.difference_type === 'price' ? 'bg-green-100 text-green-700' :
-                            'bg-orange-100 text-orange-700'
-                          }`}>
-                            {item.difference_type === 'both' ? '💰📦' : 
-                             item.difference_type === 'price' ? '💰' : '📦'}
-                          </span>
-                        </td>
                         <td className="px-4 py-3 text-right text-gray-800 font-semibold">{formatPrice(item.zt_price)}</td>
                         <td className="px-4 py-3 text-right text-gray-800 font-semibold">{formatPrice(item.up_price)}</td>
                         <td className="px-4 py-3 text-right">
                           <div className="text-right">
-                            <div className={`font-bold ${
-                              item.difference > 0 ? 'text-red-600' : 
-                              item.difference < 0 ? 'text-green-600' : 'text-gray-600'
-                            }`}>
-                              {item.difference !== 0 ? (
-                                <>{item.difference > 0 ? '+' : ''}{formatPrice(Math.abs(item.difference))}</>
-                              ) : (
-                                <span className="text-gray-400">Identique</span>
-                              )}
+                            <div className={`font-bold ${item.difference > 0 ? 'text-red-600' : 'text-green-600'}`}>
+                              {item.difference > 0 ? '+' : ''}{formatPrice(Math.abs(item.difference))}
                             </div>
-                            {item.difference !== 0 && (
-                              <div className="text-xs text-gray-500 font-medium">
-                                {item.diff_percent > 0 ? '+' : ''}{item.diff_percent.toFixed(1)}%
-                              </div>
-                            )}
+                            <div className="text-xs text-gray-500 font-medium">
+                              {item.diff_percent > 0 ? '+' : ''}{item.diff_percent.toFixed(1)}%
+                            </div>
                           </div>
                         </td>
                         <td className="px-4 py-3">
@@ -630,8 +597,8 @@ const PriceComparator = () => {
             </div>
 
             {currentData.length === 0 && (
-              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6 text-center mt-4">
-                <p className="text-yellow-800 font-medium">Aucun produit ne correspond au filtre sélectionné</p>
+              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6 text-center">
+                <p className="text-yellow-800 font-medium">Aucune différence importante trouvée pour cette catégorie</p>
               </div>
             )}
           </>
