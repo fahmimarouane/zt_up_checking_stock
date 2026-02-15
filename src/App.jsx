@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 <<<<<<< HEAD
-import { Upload, CheckCircle, TrendingUp, TrendingDown, Download, BarChart3, Filter, Menu } from 'lucide-react';
+import { Upload, CheckCircle, TrendingUp, TrendingDown, Download, BarChart3, Filter, Menu } from 'lucide-react'; 
 import * as XLSX from 'xlsx';
 
 const PriceComparator = () => {
